@@ -1,0 +1,71 @@
+{
+  "name": "lean-sales-agents",
+  "owner": {
+    "name": "Tapio",
+    "email": "tapio@leansalesmethod.com"
+  },
+  "metadata": {
+    "description": "Lean Sales methodology AI agents for B2B sales optimization. First-mover advantage in AI-powered Lean Sales solutions.",
+    "version": "1.0.0",
+    "category": "sales",
+    "tags": ["b2b", "lean-sales", "qualification", "discovery", "value-selling", "pipeline", "crm"],
+    "license": "proprietary"
+  },
+  "plugins": [
+    {
+      "name": "lean-sales",
+      "description": "Complete Lean Sales methodology plugin with 26 specialized agents for B2B sales optimization. Includes qualification frameworks, discovery tools, value selling, competitive intelligence, and pipeline management.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/lean-sales"]
+    }
+  ],
+  "agents": {
+    "strategy": [
+      "strategic-market-intelligence",
+      "segment-strategy",
+      "value-proposition-optimization",
+      "offering-configuration",
+      "channel-strategy",
+      "pricing-strategy"
+    ],
+    "execution": [
+      "prospect-intelligence",
+      "account-planning",
+      "outreach-automation",
+      "discovery",
+      "qualification",
+      "value-selling",
+      "sales-argumentation",
+      "lead-nurturing",
+      "competitive-intelligence",
+      "proposal-generation",
+      "content-personalization",
+      "risk-management",
+      "process-coaching",
+      "deal-acceleration",
+      "customer-handoff"
+    ],
+    "management": [
+      "sales-operations-management",
+      "sales-analytics-forecasting",
+      "performance-coaching",
+      "quality-assurance",
+      "continuous-improvement"
+    ]
+  },
+  "commands": [
+    {
+      "name": "qualify",
+      "description": "Qualify prospects using Lean Sales framework"
+    },
+    {
+      "name": "discovery",
+      "description": "Prepare for and analyze discovery calls"
+    },
+    {
+      "name": "follow-up",
+      "description": "Generate follow-up actions and nurturing sequences"
+    }
+  ]
+}

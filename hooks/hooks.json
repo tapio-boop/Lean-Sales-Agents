@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [],
+    "PostToolUse": [],
+    "Notification": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Lean Sales plugin active'"
+          }
+        ]
+      }
+    ]
+  }
+}

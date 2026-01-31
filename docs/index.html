@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lean Sales AI Agents</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0A0A0B;
+            --bg-secondary: #111113;
+            --bg-tertiary: #18181B;
+            --border: #27272A;
+            --text-primary: #FAFAFA;
+            --text-secondary: #A1A1AA;
+            --text-tertiary: #71717A;
+            --accent: #6366F1;
+            --accent-glow: rgba(99, 102, 241, 0.15);
+            --success: #22C55E;
+            --highlight: #F59E0B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 0;
+            background: rgba(10, 10, 11, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--text-tertiary);
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .btn-accent:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 180px 0 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 600px;
+            background: radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--success);
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        h1 .gradient {
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 64px;
+            padding: 64px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-tertiary);
+            margin-top: 4px;
+        }
+
+        /* Section */
+        section {
+            padding: 120px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Journey */
+        .journey {
+            position: relative;
+        }
+
+        .journey-line {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--border) 0%, var(--accent) 50%, var(--success) 100%);
+            z-index: 0;
+        }
+
+        .journey-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .journey-step {
+            text-align: center;
+        }
+
+        .step-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 24px;
+            transition: all 0.3s;
+        }
+
+        .journey-step:hover .step-icon {
+            border-color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .step-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .step-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .step-price {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .pricing-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px 24px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent);
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.1) 0%, var(--bg-secondary) 100%);
+        }
+
+        .pricing-card.featured::before {
+            content: 'Goal';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--text-primary);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .pricing-phase {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+
+        .pricing-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .pricing-price {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .pricing-price span {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-tertiary);
+        }
+
+        .pricing-duration {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-bottom: 24px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .pricing-features li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .check {
+            color: var(--success);
+        }
+
+        .pricing-cta {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            font-style: italic;
+        }
+
+        /* Agents */
+        .agents-layers {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .agent-layer {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .layer-header {
+            padding: 24px 32px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .layer-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .layer-count {
+            background: var(--bg-tertiary);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .layer-agents {
+            padding: 24px 32px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .agent-tag {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-family: 'SF Mono', Monaco, monospace;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .agent-tag:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        /* Qualification */
+        .qualification-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .qual-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .qual-letter {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .qual-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .qual-desc {
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        /* Origin */
+        .origin {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 48px;
+            display: flex;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .origin-content {
+            flex: 1;
+        }
+
+        .origin-year {
+            font-size: 80px;
+            font-weight: 700;
+            color: var(--bg-tertiary);
+            letter-spacing: -0.04em;
+            line-height: 1;
+        }
+
+        .origin h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .origin p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta h2 {
+            margin-bottom: 24px;
+        }
+
+        .cta p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 48px 0;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            color: var(--text-tertiary);
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .journey-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .journey-line {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 40px;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 32px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .journey-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .qualification-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .origin {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">Lean Sales <span>AI Agents</span></div>
+            <ul class="nav-links">
+                <li><a href="#journey">How It Works</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#agents">Agents</a></li>
+                <li><a href="#methodology">Methodology</a></li>
+            </ul>
+            <a href="mailto:tapio@leansalesmethod.com" class="btn btn-primary">
+                Get Started
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="badge">
+                    <span class="badge-dot"></span>
+                    26 Specialized AI Agents
+                </div>
+                <h1>
+                    <span class="gradient">Lean Sales</span><br>
+                    AI Agents
+                </h1>
+                <p class="hero-subtitle">
+                    Transform your B2B sales with AI-powered qualification, discovery, and deal acceleration. Built on proven methodology since 2013.
+                </p>
+                <div class="hero-buttons">
+                    <a href="mailto:tapio@leansalesmethod.com?subject=Lean%20Sales%20AI%20Agents%20Inquiry" class="btn btn-primary">
+                        Book a Call
+                    </a>
+                    <a href="#journey" class="btn btn-secondary">
+                        See How It Works
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">26</div>
+                <div class="stat-label">AI Agents</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">60%</div>
+                <div class="stat-label">Proactive Win Rate</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">4</div>
+                <div class="stat-label">Qualification Areas</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">2013</div>
+                <div class="stat-label">Methodology Origin</div>
+            </div>
+        </div>
+
+        <section id="journey">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Land & Expand</div>
+                    <h2>Your Path to AI-Powered Sales</h2>
+                    <p class="section-subtitle">
+                        Start with inspiration, prove value with a pilot, then scale to continuous operations.
+                    </p>
+                </div>
+                <div class="journey">
+                    <div class="journey-line"></div>
+                    <div class="journey-steps">
+                        <div class="journey-step">
+                            <div class="step-icon">💡</div>
+                            <div class="step-label">Inspire</div>
+                            <div class="step-title">Keynote / Workshop</div>
+                            <div class="step-desc">See what's possible. Experience the methodology and AI agents in action.</div>
+                            <div class="step-price">€3,500 – €12,000</div>
+                        </div>
+                        <div class="journey-step">
+                            <div class="step-icon">🧪</div>
+                            <div class="step-label">Prove</div>
+                            <div class="step-title">Pilot</div>
+                            <div class="step-desc">2-3 agents in production. Your data, your CRM, measurable results.</div>
+                            <div class="step-price">€15,000 – €25,000</div>
+                        </div>
+                        <div class="journey-step">
+                            <div class="step-icon">🚀</div>
+                            <div class="step-label">Scale</div>
+                            <div class="step-title">Transformation</div>
+                            <div class="step-desc">Full deployment. All 26 agents, complete integration, team training.</div>
+                            <div class="step-price">€60,000 – €150,000</div>
+                        </div>
+                        <div class="journey-step">
+                            <div class="step-icon">♾️</div>
+                            <div class="step-label">Operate</div>
+                            <div class="step-title">Managed Ops</div>
+                            <div class="step-desc">Continuous optimization. We run your AI sales operations.</div>
+                            <div class="step-price">From €8,000/month</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" style="background: var(--bg-secondary);">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Pricing</div>
+                    <h2>Choose Your Entry Point</h2>
+                    <p class="section-subtitle">
+                        Every engagement is designed to prove value and expand.
+                    </p>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-phase">Inspire</div>
+                        <div class="pricing-title">Keynote</div>
+                        <div class="pricing-price">€3,500</div>
+                        <div class="pricing-duration">45 minutes</div>
+                        <ul class="pricing-features">
+                            <li><span class="check">✓</span> Lean Sales methodology intro</li>
+                            <li><span class="check">✓</span> Live AI agent demonstration</li>
+                            <li><span class="check">✓</span> Q&A session</li>
+                            <li><span class="check">✓</span> Executive summary deck</li>
+                        </ul>
+                        <div class="pricing-cta">→ Identify pilot candidates</div>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="pricing-phase">Inspire</div>
+                        <div class="pricing-title">Workshop</div>
+                        <div class="pricing-price">€8,000 <span>– €12,000</span></div>
+                        <div class="pricing-duration">1 day</div>
+                        <ul class="pricing-features">
+                            <li><span class="check">✓</span> Hands-on methodology training</li>
+                            <li><span class="check">✓</span> Qualification framework practice</li>
+                            <li><span class="check">✓</span> AI agent deep-dive</li>
+                            <li><span class="check">✓</span> Your pipeline analysis</li>
+                        </ul>
+                        <div class="pricing-cta">→ Scope pilot together</div>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="pricing-phase">Prove</div>
+                        <div class="pricing-title">Pilot</div>
+                        <div class="pricing-price">€15,000 <span>– €25,000</span></div>
+                        <div class="pricing-duration">2-3 months</div>
+                        <ul class="pricing-features">
+                            <li><span class="check">✓</span> 2-3 agents deployed</li>
+                            <li><span class="check">✓</span> CRM integration</li>
+                            <li><span class="check">✓</span> 10 users</li>
+                            <li><span class="check">✓</span> Baseline vs. pilot ROI report</li>
+                        </ul>
+                        <div class="pricing-cta">→ Business case for scale</div>
+                    </div>
+                    <div class="pricing-card featured">
+                        <div class="pricing-phase">Operate</div>
+                        <div class="pricing-title">Managed Ops</div>
+                        <div class="pricing-price">€8,000 <span>/month</span></div>
+                        <div class="pricing-duration">Ongoing</div>
+                        <ul class="pricing-features">
+                            <li><span class="check">✓</span> All 26 agents</li>
+                            <li><span class="check">✓</span> Continuous optimization</li>
+                            <li><span class="check">✓</span> Dedicated success manager</li>
+                            <li><span class="check">✓</span> Monthly performance reviews</li>
+                        </ul>
+                        <div class="pricing-cta">→ We run it for you</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="agents">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Technology</div>
+                    <h2>26 Specialized Agents</h2>
+                    <p class="section-subtitle">
+                        Three-layer architecture covering strategy, execution, and management.
+                    </p>
+                </div>
+                <div class="agents-layers">
+                    <div class="agent-layer">
+                        <div class="layer-header">
+                            <span class="layer-title">Strategy Layer</span>
+                            <span class="layer-count">6 agents</span>
+                        </div>
+                        <div class="layer-agents">
+                            <span class="agent-tag">strategic-market-intelligence</span>
+                            <span class="agent-tag">segment-strategy</span>
+                            <span class="agent-tag">value-proposition-optimization</span>
+                            <span class="agent-tag">offering-configuration</span>
+                            <span class="agent-tag">channel-strategy</span>
+                            <span class="agent-tag">pricing-strategy</span>
+                        </div>
+                    </div>
+                    <div class="agent-layer">
+                        <div class="layer-header">
+                            <span class="layer-title">Execution Layer</span>
+                            <span class="layer-count">15 agents</span>
+                        </div>
+                        <div class="layer-agents">
+                            <span class="agent-tag">prospect-intelligence</span>
+                            <span class="agent-tag">account-planning</span>
+                            <span class="agent-tag">outreach-automation</span>
+                            <span class="agent-tag">discovery</span>
+                            <span class="agent-tag">qualification</span>
+                            <span class="agent-tag">value-selling</span>
+                            <span class="agent-tag">sales-argumentation</span>
+                            <span class="agent-tag">lead-nurturing</span>
+                            <span class="agent-tag">competitive-intelligence</span>
+                            <span class="agent-tag">proposal-generation</span>
+                            <span class="agent-tag">content-personalization</span>
+                            <span class="agent-tag">risk-management</span>
+                            <span class="agent-tag">process-coaching</span>
+                            <span class="agent-tag">deal-acceleration</span>
+                            <span class="agent-tag">customer-handoff</span>
+                        </div>
+                    </div>
+                    <div class="agent-layer">
+                        <div class="layer-header">
+                            <span class="layer-title">Management Layer</span>
+                            <span class="layer-count">5 agents</span>
+                        </div>
+                        <div class="layer-agents">
+                            <span class="agent-tag">sales-operations-management</span>
+                            <span class="agent-tag">sales-analytics-forecasting</span>
+                            <span class="agent-tag">performance-coaching</span>
+                            <span class="agent-tag">quality-assurance</span>
+                            <span class="agent-tag">continuous-improvement</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="methodology" style="background: var(--bg-secondary);">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Framework</div>
+                    <h2>4-Question Qualification</h2>
+                    <p class="section-subtitle">
+                        Score every opportunity 0-100. Below 40 = No-go. Above 80 = Pursue aggressively.
+                    </p>
+                </div>
+                <div class="qualification-grid">
+                    <div class="qual-card">
+                        <div class="qual-letter">F</div>
+                        <div class="qual-title">FOR</div>
+                        <div class="qual-desc">Is this an opportunity for the customer?</div>
+                    </div>
+                    <div class="qual-card">
+                        <div class="qual-letter">A</div>
+                        <div class="qual-title">ACT</div>
+                        <div class="qual-desc">Will the customer take action?</div>
+                    </div>
+                    <div class="qual-card">
+                        <div class="qual-letter">F</div>
+                        <div class="qual-title">FIT</div>
+                        <div class="qual-desc">Is this a good fit for us?</div>
+                    </div>
+                    <div class="qual-card">
+                        <div class="qual-letter">W</div>
+                        <div class="qual-title">WIN</div>
+                        <div class="qual-desc">Can we win this deal?</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="origin">
+            <div class="container">
+                <div class="origin">
+                    <div class="origin-year">2013</div>
+                    <div class="origin-content">
+                        <h3>Lean Sales: More Sales with Less Selling</h3>
+                        <p>
+                            The methodology behind these AI agents was originally published in 2013.
+                            It applies lean manufacturing principles—elimination of waste, continuous improvement,
+                            and customer value focus—to B2B sales processes. Now, over a decade later,
+                            AI makes it possible to operationalize these principles at scale.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta" style="background: var(--bg-secondary);">
+            <div class="container">
+                <h2>Ready to transform your sales?</h2>
+                <p>Start with a keynote or workshop. Prove value with a pilot. Scale with managed operations.</p>
+                <div class="hero-buttons">
+                    <a href="mailto:tapio@leansalesmethod.com?subject=Lean%20Sales%20AI%20Agents%20-%20Let's%20Talk" class="btn btn-accent">
+                        Book a Call
+                    </a>
+                    <a href="https://github.com" class="btn btn-secondary">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-text">
+                © 2026 Lean Sales Method. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="mailto:tapio@leansalesmethod.com">Contact</a>
+                <a href="https://github.com">GitHub</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
