@@ -1,152 +1,82 @@
 # Lean Sales AI Agents
 
-Transform your B2B sales with AI-powered qualification, discovery, and deal acceleration. Built on proven methodology since 2013.
+26 AI agents that bring Lean thinking to B2B sales — so your team spends time on deals that matter, not chasing dead ends.
 
-## Overview
+## The Problem With Most B2B Sales
 
-26 specialized AI agents organized in three layers:
+Sales teams are busy. They send hundreds of emails, sit in dozens of meetings, and manage bloated pipelines. But busy is not the same as effective.
 
-| Layer | Agents | Purpose |
-|-------|--------|---------|
-| **Strategy** | 6 | Define WHO to target, WHAT to offer, WHY customers buy |
-| **Execution** | 15 | Identify, engage, qualify, and close opportunities |
-| **Management** | 5 | Analytics, coaching, and continuous improvement |
+The typical B2B sales process is full of waste:
+- **Wrong prospects** — 40-60% of pipeline never had real potential
+- **Generic outreach** — the same message to every buyer, regardless of their situation
+- **Slow qualification** — weeks spent on deals that should have been disqualified on day one
+- **No systematic learning** — the same mistakes repeated quarter after quarter
 
-## How It Works
+This is exactly the problem Lean manufacturing solved in production. **Lean Sales applies the same thinking to B2B sales.**
 
-```
-INSPIRE          →    PROVE           →    SCALE              →    OPERATE
-───────               ─────                ─────                   ───────
-Keynote/Workshop      Pilot               Transformation          Managed Ops
-€3,500 - €12,000      €15,000 - €25,000   €60,000 - €150,000      From €8,000/mo
-```
+## What Lean Thinking Changes in Sales
 
-### 1. Inspire: Keynote or Workshop
+| Before (Traditional) | After (Lean Sales) |
+|---|---|
+| Fill the pipeline, sort it later | Qualify early, pursue only high-fit opportunities |
+| Activity metrics (calls, emails sent) | Outcome metrics (conversion rate, cycle time, win rate) |
+| Every rep figures it out alone | Systematic process with continuous improvement |
+| Reactive — respond to inbound | Proactive — engage before the RFP (60% vs 20% win rates) |
+| Gut-based forecasting | Data-driven qualification scoring |
 
-See what's possible. Experience the methodology and AI agents in action.
+The core insight: **doing fewer things better produces more revenue than doing more things poorly.**
 
-- **Keynote** (45 min, €3,500): Methodology intro, live AI demo, Q&A
-- **Workshop** (1 day, €8,000-12,000): Hands-on training, qualification practice, pipeline analysis
+## The 26 Agents
 
-*Outcome: Identify pilot candidates, scope next steps*
+Organized in three layers, mirroring how a well-run sales organization works:
 
-### 2. Prove: Pilot
+### Strategy Layer (6 agents)
+Define the playing field: which markets, which segments, what value, at what price.
 
-2-3 agents deployed in your environment with measurable results.
+`strategic-market-intelligence` · `segment-strategy` · `value-proposition-optimization` · `offering-configuration` · `channel-strategy` · `pricing-strategy`
 
-- 2-3 months duration
-- CRM integration
-- 10 users
-- Baseline vs. pilot ROI report
+### Execution Layer (15 agents)
+Run the sales process from first signal to closed deal.
 
-*Outcome: Business case for scale*
+`prospect-intelligence` · `account-planning` · `outreach-automation` · `discovery` · `qualification` · `value-selling` · `sales-argumentation` · `lead-nurturing` · `competitive-intelligence` · `proposal-generation` · `content-personalization` · `risk-management` · `process-coaching` · `deal-acceleration` · `customer-handoff`
 
-### 3. Scale: Transformation
+### Management Layer (5 agents)
+Measure, coach, and improve — continuously.
 
-Full deployment across your sales organization.
-
-- All 26 agents
-- Complete integration (CRM, email, calendar)
-- Team training and change management
-- 4-6 months implementation
-
-*Outcome: AI-powered sales operations*
-
-### 4. Operate: Managed Operations
-
-We run your AI sales operations continuously.
-
-- Ongoing optimization
-- Dedicated success manager
-- Monthly performance reviews
-- New agent versions and updates
-
-*Starting from €8,000/month*
-
-## The Methodology
-
-Based on **Lean Sales: More Sales with Less Selling** (2013), this system applies lean principles to B2B sales:
-
-1. **Customer Value First** — Every action creates demonstrable value
-2. **Align to Customer Journey** — Map to how customers decide, not how we sell
-3. **Proactive Over Reactive** — Engage before RFPs (60% vs 20% win rates)
-4. **Data-Driven Qualification** — Fact-based criteria, not intuition
-5. **Eliminate Waste** — Focus only on winnable deals
+`sales-operations-management` · `sales-analytics-forecasting` · `performance-coaching` · `quality-assurance` · `continuous-improvement`
 
 ## Qualification Framework
 
-The 4-question test applied to every opportunity:
+Every opportunity is scored on four dimensions:
 
 | Area | Question | Score |
 |------|----------|-------|
-| **FOR** | Is this an opportunity for the customer? | 0-25 |
-| **ACT** | Will the customer take action? | 0-25 |
-| **FIT** | Is this a good fit for us? | 0-25 |
-| **WIN** | Can we win? | 0-25 |
+| **FOR** | Is this an opportunity for the customer? | 0–25 |
+| **ACT** | Will the customer take action? | 0–25 |
+| **FIT** | Is this a good fit for us? | 0–25 |
+| **WIN** | Can we win? | 0–25 |
 
-**Total: 0-100**
+**Below 40:** No-go. **40–59:** Needs work. **60–79:** Proceed. **80–100:** Pursue aggressively.
 
-- Below 40: No-go
-- 40-59: Requires qualification work
-- 60-79: Proceed with standard engagement
-- 80-100: Pursue aggressively
+This prevents the most expensive mistake in sales: investing weeks in a deal you were never going to win.
 
-## Agents
+## Three Workflows
 
-### Strategy Layer (6)
-- `strategic-market-intelligence` — Market analysis and competitor vulnerabilities
-- `segment-strategy` — ICP definition and segment prioritization
-- `value-proposition-optimization` — Segment-specific value messaging
-- `offering-configuration` — Solution packaging and bundling
-- `channel-strategy` — Route-to-market optimization
-- `pricing-strategy` — Value-based pricing and deal structuring
-
-### Execution Layer (15)
-- `prospect-intelligence` — Account research and stakeholder mapping
-- `account-planning` — Expansion opportunity identification
-- `outreach-automation` — Multi-channel personalized campaigns
-- `discovery` — Needs validation and DMU mapping
-- `qualification` — Opportunity scoring and go/no-go decisions
-- `value-selling` — ROI quantification and business cases
-- `sales-argumentation` — Stakeholder-specific messaging
-- `lead-nurturing` — Not-yet-ready prospect maintenance
-- `competitive-intelligence` — Displacement strategies
-- `proposal-generation` — Customized proposal creation
-- `content-personalization` — Asset customization
-- `risk-management` — Deal risk identification
-- `process-coaching` — Real-time sales guidance
-- `deal-acceleration` — Pipeline velocity and closing
-- `customer-handoff` — Onboarding transition
-
-### Management Layer (5)
-- `sales-operations-management` — Workflow orchestration
-- `sales-analytics-forecasting` — Pipeline metrics and predictions
-- `performance-coaching` — Agent and rep optimization
-- `quality-assurance` — Output quality validation
-- `continuous-improvement` — Learning capture and feedback
-
-## Workflows
-
-**EXPAND** (Existing Customers)
-```
-Account Planning → Discovery → Qualification → Value Selling → Proposal → Close
-```
-
-**ACQUIRE** (New Customers)
-```
-Market Intelligence → Prospecting → Outreach → Discovery → Qualification → Competitive Analysis → Value Selling → Proposal → Close
-```
-
-**ENTER** (New Markets)
-```
-Market Intelligence → Segment Strategy → Value Proposition → Prospecting → Outreach → Discovery → Qualification → Proposal → Close
-```
+| Workflow | When to Use | Starting Point |
+|----------|-------------|----------------|
+| **Expand** | Growing existing accounts | Account Planning → Discovery → Qualification → Value Selling → Proposal |
+| **Acquire** | Winning new customers | Market Intelligence → Prospecting → Outreach → Discovery → Qualification → Proposal |
+| **Enter** | Entering new markets | Market Intelligence → Segment Strategy → Value Proposition → Prospecting → Outreach |
 
 ## Get Started
 
 **Book a call:** [tapio@leansalesmethod.com](mailto:tapio@leansalesmethod.com?subject=Lean%20Sales%20AI%20Agents)
 
-**Website:** [docs/index.html](docs/index.html)
+**Website:** [leansales.fi](https://leansales.fi)
+
+## Learn More
+
+- **Book**: *Lean Sales — More Sales with Less Selling* by Tapio Nissilä (2013), available on [Amazon](https://www.amazon.com)
 
 ## License
 
